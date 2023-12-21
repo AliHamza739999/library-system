@@ -1,0 +1,103 @@
+<!-- templates/myapp/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOK LIBRARY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul, table {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        li, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+   {%  include 'navbar.html' %}
+    <h1>Welcome to the Books Library</h1>
+
+    <h2>Authors</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>View</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.frist_name }}</td>
+                    <td>{{ author.last_name }}</td>
+                    <td>{{ author.address }}</td>
+                    <td><a href="{% url 'authordetails' author.id %}" >View</a></td>
+                    <td><a href="{% url 'authorupdate' author.id %}">Update</a></td>
+                    <td><a href="{% url 'authordelete' author.id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Books</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publication Year</th>
+                <th>ISBN</th>
+                <th>Price</th>
+                <th>View</th>
+                <th>Update</th>
+                <th>Delete</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.publication_year }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>${{ book.price }}</td>
+                    <td><a href="{% url 'bookdetails' book.id %}" >View</a></td>
+                    <td><a href="{% url 'updatebook' book.id %}">Update</a></td>
+                    <td><a href="{% url 'deletebook' book.id %}">Delete</a></td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

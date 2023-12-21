@@ -1,0 +1,87 @@
+<html>
+<head>
+<style>
+        
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2e2a2a;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.confirmation-box {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+
+    text-align: center;
+    width: 70%;
+   
+
+}
+
+h2 {
+    color: #333;
+    font-size : 35px
+}
+
+p {
+    margin-bottom: 20px;
+    color: #555;
+    font-size : 25px
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="confirmation-box">
+      <h2>Delete Author</h2>
+      
+
+      
+
+      <form method="POST" class="d-inline">
+         {% csrf_token %}
+
+         <p>Are you sure you want to delete "{{ author.frist_name }} {{auther.last_name}}"?</p>
+
+         <a href="{% url 'home' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+        
+        <input type="submit" value="confirm" class="btn btn-danger" />
+        
+      </form>
+      
+    </div>
+  </div>
+
+</body>
+</html>

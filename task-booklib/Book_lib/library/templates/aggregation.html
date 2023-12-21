@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-top: 50px;
+      }
+
+      h2,
+      h3 {
+        color: #333;
+      }
+
+      .result-table {
+        margin-top: 20px;
+      }
+
+      .result-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .result-label {
+        font-weight: bold;
+      }
+
+      .result-value {
+        color: #020202;
+      }
+
+      .books-per-year-table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+
+      .books-per-year-table th,
+      .books-per-year-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+
+      .books-per-year-table th {
+        background-color: #4caf50;
+        color: #fff;
+      }
+
+      .books-per-year-table td:first-child {
+        font-weight: bold;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #212521;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        border-radius: 4px;
+      }
+
+      .btn:hover {
+        background-color: #418a41;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Aggregation</h2>
+
+      <div class="result-table">
+        <div class="result-row">
+          <div class="result-label">Total number of books:</div>
+          <div class="result-value">{{ aggregation.total_books }}</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">Average price:</div>
+          <div class="result-value">
+            ${{ aggregation.average_price|floatformat:2 }}
+          </div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">Oldest book:</div>
+          <div class="result-value">{{ aggregation.oldest_book }}</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">Newest book:</div>
+          <div class="result-value">{{ aggregation.newest_book }}</div>
+        </div>
+      </div>
+
+      <h3>Books published each year:</h3>
+      <ul class="books-per-year-list">
+        {% for entry in bookeachyear %}
+        <li>{{ entry.publication_year }}: {{ entry.count }} books</li>
+        {% endfor %}
+      </ul>
+
+      <a href="{% url 'home' %}" class="btn">Back to Home</a>
+    </div>
+  </body>
+</html>
